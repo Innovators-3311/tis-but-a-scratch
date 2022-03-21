@@ -1,0 +1,82 @@
+<html>
+
+<head>
+  <title>Tis But A Scratch: a disconnected arm physics model</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <form>
+      <div class="row form-row">
+        <div class="col-sm-3">
+          <label for="shoulderAngle" class="form-label">Shoulder Angle</label>
+          <input type="range" value="-30" min=-180 max=0 class="form-range" id="shoulderAngle"/>
+        </div>
+        <div class="col-sm-1">
+          <span id="shoulderAngleOut">-30</span>
+        </div>
+        <div class="col-sm-3">
+          <label for="elbowAngle" class="form-label">Elbow Angle</label>
+          <input type="range" value=15 min=15 max=340 class="form-range" id="elbowAngle"/>
+        </div>
+        <div class="col-sm-1">
+          <span id="elbowAngleOut">15</span>
+        </div>
+      </div>
+    </form>
+
+
+    <div class="row">
+      <svg version="1.1" width="600" viewBox="-400 -350 800 450" style="border: 1px solid black;"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Described largely in: 
+            https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform 
+            -->
+        <g id="shoulder" fill="grey" transform="rotate(-30 16 16)">
+          <rect id="aftarm" width="256" height="32" x="0" y="0" rx="15" fill="#dfd" stroke="black" />
+
+          <g id=elbow fill="grey" transform="rotate(15 240 16)">
+            <rect id="forearm" width="256" height="32" x="0" y="0" rx="15" fill="#faaa" stroke="black" />
+          </g>
+
+          <circle id="elbow" cx="240" cy="16" r="8" fill="black" />
+        </g>
+        <circle id="shoulder" cx="16" cy="16" r="8" fill="black" />
+
+        <!-- <use xlink:href="#aftarm" fill="None" stroke="red"/> -->
+      </svg>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      var elbow = $('#elbow');
+      var shoulder = $('#shoulder');
+
+      var elbowSlider = $('#elbowAngle');
+      elbowSlider.on('input', function(event){
+        var newVal = event.target.value;
+        elbow.attr("transform", "rotate(" + newVal + " 240 16)");
+        $('#elbowAngleOut').text(newVal);
+      });
+
+      var shoulderSlider = $('#shoulderAngle');
+      shoulderSlider.on('input', function(event){
+        var newVal = event.target.value;
+        shoulder.attr("transform", "rotate(" + newVal + " 16 16)");
+        $('#shoulderAngleOut').text(newVal);
+        });
+
+    })
+  </script>
+
+</body>
+
+</html>
