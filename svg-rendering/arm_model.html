@@ -12,14 +12,14 @@
       <div class="row form-row">
         <div class="col-sm-3">
           <label for="shoulderAngle" class="form-label">Shoulder Angle</label>
-          <input type="range" value="-30" min=-180 max=0 class="form-range" id="shoulderAngle"/>
+          <input type="range" value="-30" min=-180 max=0 step="0.01" class="form-range" id="shoulderAngle"/>
         </div>
         <div class="col-sm-1">
           <span id="shoulderAngleOut">-30</span>
         </div>
         <div class="col-sm-3">
           <label for="elbowAngle" class="form-label">Elbow Angle</label>
-          <input type="range" value=15 min=15 max=340 class="form-range" id="elbowAngle"/>
+          <input type="range" value=15 min=15 max=340 step="0.01" class="form-range" id="elbowAngle"/>
         </div>
         <div class="col-sm-1">
           <span id="elbowAngleOut">15</span>
@@ -54,28 +54,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-  <script>
-    $(document).ready(function(){
-      var elbow = $('#elbow');
-      var shoulder = $('#shoulder');
-
-      var elbowSlider = $('#elbowAngle');
-      elbowSlider.on('input', function(event){
-        var newVal = event.target.value;
-        elbow.attr("transform", "rotate(" + newVal + " 240 16)");
-        $('#elbowAngleOut').text(newVal);
-      });
-
-      var shoulderSlider = $('#shoulderAngle');
-      shoulderSlider.on('input', function(event){
-        var newVal = event.target.value;
-        shoulder.attr("transform", "rotate(" + newVal + " 16 16)");
-        $('#shoulderAngleOut').text(newVal);
-        });
-
-    })
-  </script>
+  <script src="./arm-control.js"></script>
 
 </body>
 
