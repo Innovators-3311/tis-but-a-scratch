@@ -13,10 +13,10 @@ states that if you know the moment of inertia about the centroid of an
 object, then the moment of inertia about an axis parallel to that centroid
 can be computed as follows:
 
-$ I_{xx} = I_{g} + d^2 A $
+<img src="https://render.githubusercontent.com/render/math?math=I_{xx} = I_{g} + d^2 A">
 
-Where $ I_{xx} $ is the moment about the new axis, $ I_g $ is the moment
-about the centroid, $ d^2 $ is the centroid, and $ A $ is the cross-sectional
+Where <img src="https://render.githubusercontent.com/render/math?math=I_{xx}"> is the moment about the new axis, <img src="https://render.githubusercontent.com/render/math?math=I_g"> is the moment
+about the centroid, <img src="https://render.githubusercontent.com/render/math?math=d^2"> is the centroid, and <img src="https://render.githubusercontent.com/render/math?math=A"> is the cross-sectional
 area of the object.  
 
 Using this theorem, we can conclude that the contribution
