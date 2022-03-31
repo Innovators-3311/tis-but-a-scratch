@@ -13,7 +13,7 @@ states that if you know the moment of inertia about the centroid of an
 object, then the moment of inertia about an axis parallel to that centroid
 can be computed as follows:
 
-    I_{xx} = I_{g} + d^2 A $
+$ I_{xx} = I_{g} + d^2 A $
 
 Where $ I_{xx} $ is the moment about the new axis, $ I_g $ is the moment
 about the centroid, $ d^2 $ is the centroid, and $ A $ is the cross-sectional
