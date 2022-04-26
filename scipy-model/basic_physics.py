@@ -1,9 +1,9 @@
-from math import pi, cos, tanh
+from math import pi
+from numpy import cos, tanh
 
 m = 0.25                # Mass of the arm (kg)
 I = m * (6.5e-5)    # kg * sqrt(m^4) -> kg m^2
 g = 9.8                 # Gravitational Constant m/s^2
-theta0 = 0              # Initial angle
 # Distance from the axis to the center of mass (Estimate: 20 cm)
 r = 0.15
 friction = 1e-3
@@ -30,10 +30,11 @@ class ArmPhysics:
     m = 0.25                # Mass of the arm (kg)
     I = m * (6.5e-5)    # kg * sqrt(m^4) -> kg m^2
     g = 9.8                 # Gravitational Constant m/s^2
-    theta0 = 0              # Initial angle
     # Distance from the axis to the center of mass (Estimate: 20 cm)
-    r = 0.15
-    friction = 1e-3
+    r = 0.20
+
+    friction = 5e-3
+    friction_int = 1e-3
 
     def tau_gravity(self, theta=None, **kw):
         """Torque due to gravity
@@ -50,6 +51,14 @@ class ArmPhysics:
         return - self.friction * tanh(omega)
         # return - friction * np.sign(kw['omega'])
 
+    def tau_internal_friction(self, omega=None, omega_int=None, **kw) -> float:
+        """Computes internal friction (between motor and arm)
+        """
+        if omega_int is None:
+            return 0.0
+        delta_omega = omega - omega_int
+        return -self.friction_int * delta_omega
+
     def torque(self, **kw):
         # Return the total torque from gravity and friction.
-        return sum([x(**kw) for x in (self.tau_gravity, self.tau_friction)])
+        return sum([x(**kw) for x in (self.tau_gravity, self.tau_friction, self.tau_internal_friction)])

@@ -54,7 +54,7 @@ class MotorAndGearbox:
         """
         # Compute Torque given the external angle.
         # Note that The torque on the motor is opposite the torque on the load.
-        motor_torque = -self.backlash_torque(theta_ext - self.theta_int)
+        motor_torque = -self.torque(theta_ext)
         return self.speed(motor_torque=motor_torque)
 
     def step(self, dt, theta_ext):
