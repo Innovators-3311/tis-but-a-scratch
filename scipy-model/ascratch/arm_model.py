@@ -46,7 +46,7 @@ class Arm:
         """
         t_end = self.time + dt
         bunch = solve_ivp(self.ode_function, [self.time, t_end], self.state,
-                          method='Radau',
+                          method='RK45',
                           vetorized=True,
                           t_eval=[t_end])  # , tfirst=True, full_output=1)
 
