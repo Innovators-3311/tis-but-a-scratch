@@ -1,4 +1,5 @@
 from math import pi
+from typing import Optional
 from numpy import cos, tanh
 
 m = 0.25                # Mass of the arm (kg)
@@ -27,14 +28,14 @@ def tau_friction(**kw):
 
 
 class ArmPhysics:
-    m = 0.25                # Mass of the arm (kg)
-    I = m * (6.5e-5)    # kg * sqrt(m^4) -> kg m^2
+    m = 1.5                 # Mass of the arm (kg)
+    I = m * (6.5e-5)        # kg * sqrt(m^4) -> kg m^2
     g = 9.8                 # Gravitational Constant m/s^2
     # Distance from the axis to the center of mass (Estimate: 20 cm)
     r = 0.20
 
-    friction = 5e-3
-    friction_int = 1e-3
+    friction = 1e-3
+    friction_int = 5e-4
 
     def tau_gravity(self, theta=None, **kw):
         """Torque due to gravity
@@ -43,7 +44,7 @@ class ArmPhysics:
         """
         return - self.r * self.m * cos(theta * pi/180.0)
 
-    def tau_friction(self, omega=None, **kw):
+    def tau_friction(self, omega: Optional[float] = None, **kw) -> float:
         """Friction is a constant force that points in the direction opposite motion.
         """
         # This can't be nonlinear or else the solver goes crazy.
@@ -59,6 +60,8 @@ class ArmPhysics:
         delta_omega = omega - omega_int
         return -self.friction_int * delta_omega
 
-    def torque(self, **kw):
+    def torque(self, **kw) -> float:
+        """Compute the total torque applied to the load.
+        """
         # Return the total torque from gravity and friction.
         return sum([x(**kw) for x in (self.tau_gravity, self.tau_friction, self.tau_internal_friction)])
