@@ -1,9 +1,8 @@
-from ast import Call
 from bokeh.models import Range1d
 from bokeh.models.axes import LinearAxis
 from bokeh.layouts import row, column
 
-from arm_model import Arm
+from ascratch.arm_model import Arm
 from bokeh.io import output_notebook, show
 from bokeh.plotting import figure
 from typing import Callable
