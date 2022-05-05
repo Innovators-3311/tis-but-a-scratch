@@ -2,5 +2,8 @@
     "cSpell.words": [
         "domega",
         "dtheta"
-    ]
+    ],
+    "python.testing.pytestArgs": [],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
