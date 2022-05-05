@@ -1,5 +1,5 @@
-from motor import MotorAndGearbox
-from basic_physics import ArmPhysics
+from ascratch.motor import MotorAndGearbox
+from ascratch.basic_physics import ArmPhysics
 from scipy.integrate import solve_ivp
 from typing import List
 

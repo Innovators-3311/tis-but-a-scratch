@@ -1,4 +1,4 @@
-from arm_model import Arm
+from ascratch.arm_model import Arm
 
 
 def test_arm_step():
